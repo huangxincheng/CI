@@ -10,8 +10,10 @@ eureka:
     service-url:
       # 单机 #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 是否开启eureka自我保护 默认 是开启 true 开启 false 不开启
+    enable-self-preservation: false
       # 集群
       #defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
-
 
 
