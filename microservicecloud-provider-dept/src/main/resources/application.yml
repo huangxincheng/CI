@@ -27,3 +27,10 @@ eureka:
     prefer-ip-address: true
 
 
+info:
+  app.name: microservicecloud
+  company.name: www.limaila.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+
