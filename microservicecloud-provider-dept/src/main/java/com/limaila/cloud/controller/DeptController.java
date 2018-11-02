@@ -3,6 +3,7 @@ package com.limaila.cloud.controller;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.limaila.cloud.entitys.Dept;
 import com.limaila.cloud.service.DeptService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -16,6 +17,7 @@ import java.util.List;
  * <p>
  **/
 @RestController
+@Slf4j
 public class DeptController {
 
     @Autowired
@@ -45,11 +47,10 @@ public class DeptController {
     @RequestMapping("/dept/discovery")
     public Object discovery() {
         List<String> services = discoveryClient.getServices();
-        System.out.println("-----------------------------" + JSONUtils.toJSONString(services));
-
+        log.info("-----------------------------" + JSONUtils.toJSONString(services));
         List<ServiceInstance> srvList = discoveryClient.getInstances("MICROSERVICECLOUD-DEPT");
         for (ServiceInstance ele : srvList) {
-            System.out.println(ele.getServiceId() + "\t" + ele.getHost() + "\t" + ele.getPort() + "\t" + ele.getUri());
+            log.info(ele.getServiceId() + "\t" + ele.getHost() + "\t" + ele.getPort() + "\t" + ele.getUri());
         }
         return this.discoveryClient;
     }
