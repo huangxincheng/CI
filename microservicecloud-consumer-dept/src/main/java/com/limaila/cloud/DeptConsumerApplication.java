@@ -1,5 +1,7 @@
 package com.limaila.cloud;
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RetryRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -20,6 +22,19 @@ import java.nio.charset.StandardCharsets;
 @SpringBootApplication
 @EnableEurekaClient
 public class DeptConsumerApplication {
+
+    /**
+     * 全局配置ribbon的负载聚恒使用的算法为RetryRule
+     * @return
+     */
+    @Bean
+    public IRule myRule()
+    {
+        //return new RoundRobinRule();
+        //return new RandomRule();//达到的目的，用我们重新选择的随机算法替代默认的轮询。
+        return new RetryRule();
+    }
+
 
     @Bean
     //Spring Cloud Ribbon是基于Netflix Ribbon实现的一套客户端       负载均衡的工具。
