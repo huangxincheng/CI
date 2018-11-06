@@ -11,9 +11,9 @@ public interface UserService {
 
     int add(User user);
 
-    int delete(Long id);
+    int delete(Long userno);
 
     int update(User user);
 
-    User get(Long id);
+    User get(Long userno);
 }

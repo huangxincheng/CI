@@ -26,13 +26,14 @@ public class UserApplicationTest {
 
     @Test
     public void contextLoads() {
-        User user = new User();
-        user.setUserage(100);
-        user.setUsername("hxc100");
-        Date date = new Date();
-        user.setCtime(date);
-        userService.add(user);
-        log.info("{}", user.toString());
+
+        User user = userService.get(1L);
+
+        int delete = userService.delete(1L);
+
+        User user2 = userService.get(1L);
+
+        User user3 = userService.get(1L);
     }
 
 

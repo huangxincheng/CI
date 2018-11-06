@@ -17,4 +17,20 @@ spring:
     username: hxc
     password: hxc
 
+jetcache:
+  areaInCacheName: false
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: www.limaila.com
+      port: 6379
+      password: hxc
+      #sentinels: 127.0.0.1:26379 , 127.0.0.1:26380, 127.0.0.1:26381
+      #masterName: mymaster
+
 
