@@ -9,28 +9,28 @@ mybatis:
 
 spring:
    application:
-    name: microservicecloud-dept
+    name: microservicecloud-user
    datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     #driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
-    url: jdbc:mysql://www.limaila.com:3306/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false             # 数据库名称
+    url: jdbc:mysql://www.limaila.com:3306/cloud?useUnicode=true&characterEncoding=UTF-8             # 数据库名称
     username: hxc
     password: hxc
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:7001/eureka/
-  instance:
-    # 自定义服务名称
-    instance-id: ${spring.application.name}:${server.port}
-    # 访问路径可以显示IP
-    prefer-ip-address: true
 
-
-info:
-  app.name: microservicecloud
-  company.name: www.limaila.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
+jetcache:
+  areaInCacheName: false
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: www.limaila.com
+      port: 6379
+      password: hxc
+      #sentinels: 127.0.0.1:26379 , 127.0.0.1:26380, 127.0.0.1:26381
+      #masterName: mymaster
 
 
