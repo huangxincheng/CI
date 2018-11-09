@@ -6,8 +6,14 @@ import com.alicp.jetcache.anno.Cached;
 import com.limaila.cloud.dao.UserMapper;
 import com.limaila.cloud.entitys.User;
 import com.limaila.cloud.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.concurrent.Future;
 
 /**
  * Author: huangxincheng
@@ -15,6 +21,7 @@ import org.springframework.stereotype.Service;
  * <p>
  **/
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -42,4 +49,5 @@ public class UserServiceImpl implements UserService {
     public User get(Long userno) {
         return userMapper.get(userno);
     }
+
 }

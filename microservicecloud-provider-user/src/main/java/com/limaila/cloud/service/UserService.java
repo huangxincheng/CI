@@ -2,6 +2,8 @@ package com.limaila.cloud.service;
 
 import com.limaila.cloud.entitys.User;
 
+import java.util.concurrent.Future;
+
 /**
  * Author: huangxincheng
  * <p>

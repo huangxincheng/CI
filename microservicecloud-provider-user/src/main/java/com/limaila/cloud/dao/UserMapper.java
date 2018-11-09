@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into user(username,userage,ctime) values(#{username},#{userage},#{ctime})")
+    @Insert("insert into user(username,userage,ctime) values(#{username},#{userage},now())")
     int add(User user);
 
     @Update("update user set username = #{username}, userage = #{userage}")
