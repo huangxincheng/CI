@@ -13,6 +13,7 @@
         <module>microservicecloud-eureka-server</module>
         <module>microservicecloud-consumer-feign-dept</module>
         <module>microservicecloud-provider-user</module>
+        <module>microservicecloud-hystrix-dashboard</module>
     </modules>
     <packaging>pom</packaging>
 

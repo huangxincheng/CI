@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
+@EnableCircuitBreaker
 public class DeptComsumerFeignApplication {
 
     public static void main(String[] args) {
