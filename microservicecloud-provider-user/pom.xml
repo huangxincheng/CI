@@ -12,6 +12,12 @@
     <artifactId>microservicecloud-provider-user</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
         <!-- 引入自己定义的api通用包，可以使用Dept部门Entity -->
         <dependency>
             <groupId>com.limaila</groupId>
