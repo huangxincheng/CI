@@ -15,6 +15,9 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.SocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -66,6 +69,10 @@ public class UserApplication {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         factory.setReadTimeout(10000);//单位为ms
         factory.setConnectTimeout(10000);//单位为ms
+        //启用代理
+//        SocketAddress address = new InetSocketAddress("114.215.174.227", 8080);
+//        Proxy proxy = new Proxy(Proxy.Type.HTTP, address);
+//        factory.setProxy(proxy);
         return factory;
     }
 
