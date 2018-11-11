@@ -14,6 +14,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -21,6 +28,8 @@ import java.net.SocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
+
+import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
  * Author: huangxincheng
@@ -37,6 +46,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableCreateCacheAnnotation
 @EnableAsync
 @EnableScheduling
+@EnableSwagger2
 public class UserApplication {
 
 
@@ -44,6 +54,42 @@ public class UserApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserApplication.class, args);
     }
+
+    /**
+     * Swagger2Config
+     * @return
+     */
+    @Bean
+    public Docket accessToken() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("api")// 定义组
+                .select() // 选择那些路径和api会生成document
+                // 拦截的包路径
+                .apis(RequestHandlerSelectors.basePackage("com.limaila.cloud"))
+                // 拦截的接口路径
+//                .paths(regex("/api/.*"))
+                .build() // 创建
+                .apiInfo(apiInfo()); // 配置说明
+    }
+
+    /**
+     * Swagger2Config
+     * @return
+     */
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()//
+                .title("Swagger")// 标题
+                .description("Swagger desc")// 描述
+                .termsOfServiceUrl("http://www.limaila.com")//
+                .contact(new Contact("huangxincheng", "www.limaila.com", "249270087@qq.com"))// 联系
+                //.license("Apache License Version 2.0")// 开源协议
+                //.licenseUrl("https://github.com/springfox/springfox/blob/master/LICENSE")// 地址
+                .version("1.0")// 版本
+                .build();
+    }
+
+
+
+
 
     @Bean
     public RestTemplate restTemplate(ClientHttpRequestFactory factory){
