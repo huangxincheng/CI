@@ -5,6 +5,7 @@ import com.netflix.loadbalancer.RetryRule;
 import com.netflix.loadbalancer.RoundRobinRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -16,6 +17,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * @SpringBootApplication SpringBoot Application
+ * @EnableEurekaClient 开启Eureka客户端
+ * @EnableFeignClients 开启Feign客户端
+ * @EnableCircuitBreaker 开启Hystrix熔断机制支持
+ */
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients

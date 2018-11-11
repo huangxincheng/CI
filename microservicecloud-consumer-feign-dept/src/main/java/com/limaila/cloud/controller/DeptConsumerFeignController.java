@@ -21,11 +21,17 @@ public class DeptConsumerFeignController {
         return this.service.get(id);
     }
 
+    /**
+     * HystrixCommand不能合Feign一起使用,否则会失败
+     * @return
+     */
     @RequestMapping(value = "/consumer/dept/list")
     public List<Dept> list()
     {
         return this.service.list();
     }
+
+
 
     @RequestMapping(value = "/consumer/dept/add")
     public Object add(Dept dept)
