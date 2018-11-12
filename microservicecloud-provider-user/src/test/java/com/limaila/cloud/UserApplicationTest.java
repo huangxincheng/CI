@@ -38,8 +38,19 @@ public class UserApplicationTest {
     @Autowired
     private RestTemplateBuilder restTemplateBuilder;
 
+    @Autowired
+    private UserService userService;
+
     @Test
-    public void contextLoads() throws ExecutionException, InterruptedException {
+    public void testUserService() {
+        userService.get(3L);
+        userService.get(3L);
+        userService.get(3L);
+    }
+
+
+    @Test
+    public void testAsync() throws ExecutionException, InterruptedException {
         System.out.println("----------------OK");
         System.out.println("111");
         Future<String> task1 = asyncTask.testAsync();
@@ -52,7 +63,7 @@ public class UserApplicationTest {
         System.out.println("----------------BB");
     }
 
-    @Test
+//    @Test
     public void testHttpProxy() {
         String str1 = restTemplate.getForObject("http://www.baidu.com", String.class);
         String str2 = restTemplateBuilder.additionalCustomizers(new ProxyCustomizer()).build()
