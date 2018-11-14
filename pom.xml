@@ -15,6 +15,7 @@
         <module>microservicecloud-provider-user</module>
         <module>microservicecloud-hystrix-dashboard</module>
         <module>microservicecloud-zuul-gateway</module>
+        <module>microservicecloud-config-server</module>
     </modules>
     <packaging>pom</packaging>
 
