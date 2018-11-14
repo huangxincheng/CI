@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: microservicecloud-config-client
+  cloud:
+    config:
+      # Config Serverd地址
+      uri: http://localhost:6001
+      # XX 环境
+      profile: dev
+      # XX 分支
+      label: master
+      # XX 环境
+      name: microservicecloud-config-client
