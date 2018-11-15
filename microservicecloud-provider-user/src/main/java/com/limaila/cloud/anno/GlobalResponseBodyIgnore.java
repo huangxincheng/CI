@@ -16,8 +16,8 @@ import java.lang.annotation.Target;
 public @interface GlobalResponseBodyIgnore {
 
     /**
-     * 默认忽略
-     * @return truue
+     * 默认不忽略
+     * @return false
      */
-    boolean ignore() default true;
+    boolean ignore() default false;
 }
