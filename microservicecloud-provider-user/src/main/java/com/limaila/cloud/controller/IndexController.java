@@ -20,9 +20,15 @@ public class IndexController {
         return "aaa";
     }
 
-    @RequestMapping("aaa")
+    @RequestMapping("a")
     public String a() {
-        return "aa";
+        return "a";
+    }
+
+    @RequestMapping("b")
+    public String b() {
+        int f = 1 / 0;
+        return "b";
     }
 
     @RequestMapping("v2")
@@ -33,4 +39,16 @@ public class IndexController {
         map.put("vesion", 1.1);
         return map;
     }
+
+    @RequestMapping("v3")
+    @ResponseBody
+    public Map v3() {
+        HashMap map = new HashMap();
+        map.put("a1", "a1");
+        map.put("vesion", 1.1);
+        int f = 1 / 0;
+        return map;
+    }
+
+
 }
