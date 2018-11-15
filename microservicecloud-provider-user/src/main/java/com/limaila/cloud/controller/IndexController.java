@@ -2,6 +2,7 @@ package com.limaila.cloud.controller;
 
 import com.limaila.cloud.anno.GlobalResponseBodyIgnore;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/index2")
+@RequestMapping("index2")
 public class IndexController {
 
     @ResponseBody
@@ -47,6 +48,12 @@ public class IndexController {
         map.put("a1", "a1");
         map.put("vesion", 1.1);
         int f = 1 / 0;
+        return map;
+    }
+
+    @RequestMapping("v4")
+    @ResponseBody
+    public Object v4(@RequestBody Map<String, Object> map) {
         return map;
     }
 
