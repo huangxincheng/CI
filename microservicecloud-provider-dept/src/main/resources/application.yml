@@ -32,5 +32,10 @@ info:
   company.name: www.limaila.com
   build.artifactId: $project.artifactId$
   build.version: $project.version$
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth: DEBUG
+
 
 
