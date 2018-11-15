@@ -29,7 +29,7 @@ public class GlobalResponseBodyHandler implements ResponseBodyAdvice {
                 flag = !a1.ignore();
             }
         }
-        log.info("[GlobalResponseBodyHandler]=========={} = {}", "supports", flag);
+        log.debug("[GlobalResponseBodyHandler]=========={} = {}", "supports", flag);
         return flag;
     }
 
