@@ -17,6 +17,7 @@
         <module>microservicecloud-zuul-gateway</module>
         <module>microservicecloud-config-server</module>
         <module>microservicecloud-config-client</module>
+        <module>microservicecloud-trace-zipkin-server</module>
     </modules>
     <packaging>pom</packaging>
 

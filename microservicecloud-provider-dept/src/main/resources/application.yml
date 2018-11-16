@@ -9,13 +9,18 @@ mybatis:
 
 spring:
    application:
-    name: microservicecloud-dept
+      name: microservicecloud-dept
    datasource:
-    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
-    #driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
-    url: jdbc:mysql://www.limaila.com:3306/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false             # 数据库名称
-    username: hxc
-    password: hxc
+      type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+      #driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+      url: jdbc:mysql://www.limaila.com:3306/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false             # 数据库名称
+      username: hxc
+      password: hxc
+   zipkin:
+      base-url: http://localhost:9411
+   sleuth:
+      sampler:
+        percentage: 1.0
 eureka:
   client:
     service-url:
@@ -36,6 +41,3 @@ logging:
   level:
     root: INFO
     org.springframework.cloud.sleuth: DEBUG
-
-
-
