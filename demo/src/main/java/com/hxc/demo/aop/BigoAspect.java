@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -62,7 +63,13 @@ public class BigoAspect {
     public Object aroundAdvice(final ProceedingJoinPoint joinPoint) {
         Method method = null;
         if (joinPoint.getSignature() instanceof MethodSignature) {
-
+            MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+            System.out.println(methodSignature.getDeclaringType());
+            System.out.println(methodSignature.getReturnType());
+            System.out.println(methodSignature.getMethod());
+            System.out.println(methodSignature.getExceptionTypes());
+            System.out.println(methodSignature.getParameterNames());
+            System.out.println(methodSignature.getParameterTypes());
         }
         System.out.println("aroundAdvice1");
         Object result = null;
