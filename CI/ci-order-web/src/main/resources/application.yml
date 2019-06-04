@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ci-order-web
+
+dubbo:
+  scan:
+    base-packages: com.husen.ci
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: zookeeper://zk.limaila.com:2181
+    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+  consumer:
+    init: false
+    check: false
+
+
+
+server:
+  port: 8082
