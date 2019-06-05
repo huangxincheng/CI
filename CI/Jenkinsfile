@@ -1,0 +1,12 @@
+node {
+   def mvnHome
+   stage('one') { // for display purposes
+     echo 'one'
+   }
+   stage('two') {
+     echo 'two'
+   }
+   stage('three') {
+     echo 'three'
+   }
+}
