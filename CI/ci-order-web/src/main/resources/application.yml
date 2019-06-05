@@ -10,7 +10,7 @@ dubbo:
     port: -1
   registry:
     address: zookeeper://zk.limaila.com:2181
-    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+    file: ${user.home}/${spring.application.name}-dubbo.cache
   consumer:
     init: false
     check: false

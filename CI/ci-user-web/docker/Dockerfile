@@ -1,6 +1,7 @@
-FROM fabric8/java-jboss-openjdk8-jdk
+FROM fabric8/java-alpine-openjdk8-jdk
+#FROM fabric8/java-jboss-openjdk8-jdk
 #FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ADD ci-user-web.jar app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 EXPOSE 8081
+COPY ci-user-web.jar /home/
+ENTRYPOINT ["java","-jar","/home/ci-user-web.jar"]
