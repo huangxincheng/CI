@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ci-order-web
+  labels:
+    app: ci-order-web
+  namespace: ci
+spec:
+  # 副本数
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ci-order-web
+  minReadySeconds: 30
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: ci-order-web
+    spec:
+      containers:
+        - name: ci-order-web
+          image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/ci-order-web:1.0
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - ls /home
+---
+
+# 正常情况只有网关才需要暴露nodePort。
+# 暂时没有网关，故暴露nodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: ci-order-web
+  namespace: ci
+spec:
+  type: NodePort
+  ports:
+  - port: 8082
+    nodePort: 30082
+  selector:
+    app: ci-order-web
