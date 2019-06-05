@@ -1,5 +1,6 @@
 package com.husen.ci.user.web;
 
+import com.husen.ci.framework.utils.SnowflakeIdWorker;
 import com.husen.ci.order.pojo.Order;
 import com.husen.ci.order.service.IOrderSevrice;
 import com.husen.ci.user.pojo.User;
@@ -29,13 +30,19 @@ public class UserApi {
     private IOrderSevrice orderSevrice;
 
     @RequestMapping("/get/{userId}")
-    public User get(@PathVariable Long userId) {
+    public User get(@PathVariable String userId) {
        return  userService.getOneById(userId);
     }
 
     @RequestMapping("/getAll")
     public Collection<User> getAll() {
         return userService.getAll();
+    }
+
+    @RequestMapping("/saveUser/{userName}")
+    public User saveUser(@PathVariable String userName) {
+        User user = new User().setUserName(userName);
+        return userService.createUser(user);
     }
 
     @RequestMapping("/saveOrder")

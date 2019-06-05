@@ -1,7 +1,10 @@
 package com.husen.ci.order.dao;
 
+import com.husen.ci.framework.utils.SnowflakeIdWorker;
 import com.husen.ci.order.entity.OrderDTO;
 import com.husen.ci.order.pojo.Order;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -16,20 +19,19 @@ import java.util.Map;
 @Repository
 public class OrderDao {
 
-    public static final Map<Long, OrderDTO> ORDER_MAP = new HashMap<>();
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public boolean saveOrder(OrderDTO orderDTO) {
         if (orderDTO == null) {
             return false;
         }
-        if (ORDER_MAP.containsKey(orderDTO.getOrderNo())) {
-            return false;
-        }
-        ORDER_MAP.put(orderDTO.getOrderNo(), orderDTO);
+        orderDTO.setOrderNo(new SnowflakeIdWorker().nextId());
+        OrderDTO insert = mongoTemplate.insert(orderDTO);
         return true;
     }
 
     public OrderDTO queryOrder(Long orderNo) {
-        return ORDER_MAP.get(orderNo);
+       return  mongoTemplate.findById(orderNo, OrderDTO.class);
     }
 }

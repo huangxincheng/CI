@@ -12,8 +12,10 @@ import java.util.Collection;
  ***/
 public interface IUserService {
 
-    User getOneById(Long userId);
+    User getOneById(String userId);
 
     Collection<User> getAll();
+
+    User createUser(User user);
 
 }

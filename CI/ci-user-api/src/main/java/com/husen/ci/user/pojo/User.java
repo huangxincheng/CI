@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class User implements Serializable {
 
-    private Long userId;
+    private String userId;
 
     private String userName;
 

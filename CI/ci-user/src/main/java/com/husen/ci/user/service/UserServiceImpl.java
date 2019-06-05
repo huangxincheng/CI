@@ -1,10 +1,13 @@
 package com.husen.ci.user.service;
 
 import com.husen.ci.user.dao.UserDao;
+import com.husen.ci.user.entity.UserDTO;
 import com.husen.ci.user.pojo.User;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -23,7 +26,7 @@ public class UserServiceImpl implements IUserService {
     private UserDao userDao;
 
     @Override
-    public User getOneById(Long userId) {
+    public User getOneById(String userId) {
         return Optional.ofNullable(userDao.findById(userId))
                 .map(uto -> new User().setUserId(uto.getUserId())
                     .setUserName(uto.getUserName())
@@ -42,5 +45,18 @@ public class UserServiceImpl implements IUserService {
                 .setUserStatus(uto.getUserStatus())
                 .setUserActiveTime(uto.getUserActiveTime())
                 .setUserCreateTime(uto.getUserCreateTime())).collect(Collectors.toList());
+    }
+
+    @Override
+    public User createUser(User user) {
+        UserDTO dto = new UserDTO().setUserId(user.getUserId())
+                .setUserStatus(1)
+                .setUserActiveTime(LocalDateTime.now())
+                .setUserCreateTime(LocalDateTime.now())
+                .setUserName(user.getUserName());
+        userDao.add(dto);
+        user = new User();
+        BeanUtils.copyProperties(dto, user);
+        return user;
     }
 }

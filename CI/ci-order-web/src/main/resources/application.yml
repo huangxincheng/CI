@@ -1,6 +1,10 @@
 spring:
   application:
     name: ci-order-web
+  data:
+    mongodb:
+      uri: mongodb://mongo.limaila.com/ci-order
+      port: 27017
 
 dubbo:
   scan:

@@ -1,6 +1,10 @@
 spring:
   application:
     name: ci-user-web
+  data:
+    mongodb:
+      uri: mongodb://mongo.limaila.com/ci-user
+      port: 27017
 
 dubbo:
   scan:

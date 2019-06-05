@@ -1,6 +1,8 @@
 package com.husen.ci.user.dao;
 
 import com.husen.ci.user.entity.UserDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -19,31 +21,21 @@ import java.util.concurrent.ThreadLocalRandom;
 @Repository
 public class UserDao {
 
-    public static List<UserDTO> dtos;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
-    static {
-        dtos = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            dtos.add(new UserDTO()
-                    .setUserId((long)i)
-                    .setUserName("USER" + i)
-                    .setUserActiveTime(LocalDateTime.now())
-                    .setUserCreateTime(LocalDateTime.now())
-                    .setUserStatus(ThreadLocalRandom.current().nextInt(2))
-            );
-        }
-    }
-
-    public UserDTO findById(Long userId) {
-        for (int i = 0; i < dtos.size(); i++) {
-            if (userId.equals(dtos.get(i).getUserId())) {
-                return dtos.get(i);
-            }
-        }
-        return null;
+    public UserDTO findById(String userId) {
+        UserDTO dto = mongoTemplate.findById(userId, UserDTO.class);
+        return dto;
     }
 
     public List<UserDTO> getAll() {
-        return dtos;
+        List<UserDTO> all = mongoTemplate.findAll(UserDTO.class);
+        return all;
+    }
+
+    public boolean add(UserDTO userDTO) {
+        UserDTO insert = mongoTemplate.insert(userDTO);
+        return true;
     }
 }

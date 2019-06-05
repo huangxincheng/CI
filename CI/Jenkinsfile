@@ -1,12 +1,18 @@
 node {
    def mvnHome
-   stage('one') { // for display purposes
+   stage('打包') { // for display purposes
      echo 'one'
    }
-   stage('two') {
+   stage('传输') {
      echo 'two'
    }
-   stage('three') {
+   stage('部署') {
      echo 'three'
+   }
+   stage('测试用例') {
+        echo 'three'
+   }
+   stage('最终结果') {
+           echo 'three'
    }
 }
