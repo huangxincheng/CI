@@ -1,15 +1,15 @@
-apiVersion: v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: ci-user-web
-  lables:
+  labels:
     app: ci-user-web
   namespace: ci
 spec:
   # 副本数
   replicas: 1
   selector:
-    matchLables:
+    matchLabels:
       app: ci-user-web
   minReadySeconds: 30
   strategy:
@@ -19,14 +19,30 @@ spec:
       maxUnavailable: 0
   template:
     metadata:
-      lables:
+      labels:
         app: ci-user-web
     spec:
       containers:
         - name: ci-user-web
-          images: hxc/ci-user-web:1.0-SNAPSHOT
+          image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/ci-user-web:1.0
           lifecycle:
             preStop:
               exec:
                 command:
                 - ls /home
+---
+
+# 正常情况只有网关才需要暴露nodePort。
+# 暂时没有网关，故暴露nodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: ci-user-web
+  namespace: ci
+spec:
+  type: NodePort
+  ports:
+  - port: 8081
+    nodePort: 30081
+  selector:
+    app: ci-user-web
