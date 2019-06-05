@@ -1,3 +1,4 @@
+# 镜像小，启动快
 FROM fabric8/java-alpine-openjdk8-jdk
 #FROM fabric8/java-jboss-openjdk8-jdk
 #FROM openjdk:8-jdk-alpine
