@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: ci-user-web
-          image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/ci-user-web:1.0
+          image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/ci-user-web:1.1
           lifecycle:
             preStop:
               exec:
