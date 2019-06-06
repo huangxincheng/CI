@@ -1,5 +1,6 @@
 package com.husen.ci.order.dao;
 
+import com.husen.ci.framework.utils.IpUtils;
 import com.husen.ci.framework.utils.SnowflakeIdWorker;
 import com.husen.ci.order.entity.OrderDTO;
 import com.husen.ci.order.pojo.Order;
@@ -28,16 +29,7 @@ public class OrderDao {
             return false;
         }
         orderDTO.setOrderNo(new SnowflakeIdWorker().nextId());
-        String hostAddress = "unkown";
-        try {
-            InetAddress localHost = InetAddress.getLocalHost();
-            if (null == localHost.getHostAddress()) {
-                hostAddress = "undefine";
-            } else {
-                hostAddress = localHost.getHostAddress();
-            }
-        } catch (Exception e) {}
-        orderDTO.setHost(hostAddress);
+        orderDTO.setHost(IpUtils.getServerHost());
         OrderDTO insert = mongoTemplate.insert(orderDTO);
         return true;
     }

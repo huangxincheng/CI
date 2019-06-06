@@ -1,5 +1,6 @@
 package com.husen.ci.user.service;
 
+import com.husen.ci.framework.utils.IpUtils;
 import com.husen.ci.user.dao.UserDao;
 import com.husen.ci.user.entity.UserDTO;
 import com.husen.ci.user.pojo.User;
@@ -50,20 +51,11 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User createUser(User user) {
-        String hostAddress = "unkown";
-        try {
-            InetAddress localHost = InetAddress.getLocalHost();
-            if (null == localHost.getHostAddress()) {
-                hostAddress = "undefine";
-            } else {
-                hostAddress = localHost.getHostAddress();
-            }
-        } catch (Exception e) {}
         UserDTO dto = new UserDTO().setUserId(user.getUserId())
                 .setUserStatus(1)
                 .setUserActiveTime(LocalDateTime.now())
                 .setUserCreateTime(LocalDateTime.now())
-                .setHost(hostAddress)
+                .setHost(IpUtils.getServerHost())
                 .setUserName(user.getUserName());
         userDao.add(dto);
         user = new User();
