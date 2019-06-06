@@ -11,6 +11,9 @@ import java.util.Optional;
 public class BeanUtils {
 
     public static <T,F> F copyProperties(T t, F f) {
+        if (t == null) {
+            return null;
+        }
         BeanUtils.copyProperties(t, f);
         return f;
     }
