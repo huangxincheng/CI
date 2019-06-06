@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,16 @@ public class OrderDao {
             return false;
         }
         orderDTO.setOrderNo(new SnowflakeIdWorker().nextId());
+        String hostAddress = "unkown";
+        try {
+            InetAddress localHost = InetAddress.getLocalHost();
+            if (null == localHost.getHostAddress()) {
+                hostAddress = "undefine";
+            } else {
+                hostAddress = localHost.getHostAddress();
+            }
+        } catch (Exception e) {}
+        orderDTO.setHost(hostAddress);
         OrderDTO insert = mongoTemplate.insert(orderDTO);
         return true;
     }

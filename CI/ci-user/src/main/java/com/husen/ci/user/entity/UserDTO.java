@@ -44,4 +44,7 @@ public class UserDTO implements Serializable {
 
     @Field(value = "userActiveTime")
     private LocalDateTime userActiveTime;
+
+    @Field
+    private String host;
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,10 +50,20 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User createUser(User user) {
+        String hostAddress = "unkown";
+        try {
+            InetAddress localHost = InetAddress.getLocalHost();
+            if (null == localHost.getHostAddress()) {
+                hostAddress = "undefine";
+            } else {
+                hostAddress = localHost.getHostAddress();
+            }
+        } catch (Exception e) {}
         UserDTO dto = new UserDTO().setUserId(user.getUserId())
                 .setUserStatus(1)
                 .setUserActiveTime(LocalDateTime.now())
                 .setUserCreateTime(LocalDateTime.now())
+                .setHost(hostAddress)
                 .setUserName(user.getUserName());
         userDao.add(dto);
         user = new User();

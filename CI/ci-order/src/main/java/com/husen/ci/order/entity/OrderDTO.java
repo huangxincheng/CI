@@ -44,4 +44,7 @@ public class OrderDTO implements Serializable {
      */
     @Field
     private Integer orderAmount;
+
+    @Field
+    private String host;
 }
