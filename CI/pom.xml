@@ -6,7 +6,7 @@
 
     <groupId>com.husen</groupId>
     <artifactId>CI</artifactId>
-    <version>${ci.version}</version>
+    <version>1.1</version>
     <modules>
         <module>ci-user-api</module>
         <module>ci-user</module>
