@@ -118,18 +118,19 @@
     </build>
 
 
-    <repositories>
+    <!-- 发布 -->
+    <distributionManagement>
         <repository>
-            <id>aliyun-repo</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <id>release</id>
+            <name>release resp</name>
+            <url>http://nexus.sizne.net:81/nexus/content/repositories/releases/</url>
         </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-        </pluginRepository>
-    </pluginRepositories>
+        <snapshotRepository>
+            <id>snapshot</id>
+            <name>snapshot resp</name>
+            <url>http://nexus.sizne.net:81/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 
 </project>
