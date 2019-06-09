@@ -123,12 +123,12 @@
         <repository>
             <id>release</id>
             <name>release resp</name>
-            <url>http://nexus.sizne.net:81/nexus/content/repositories/releases/</url>
+            <url>http://nexus.sizne.net:81/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>snapshot</id>
             <name>snapshot resp</name>
-            <url>http://nexus.sizne.net:81/nexus/content/repositories/snapshots/</url>
+            <url>http://nexus.sizne.net:81/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
