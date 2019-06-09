@@ -16,11 +16,5 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-        stage('测试用例') {
-                echo 'three'
-        }
-        stage('最终结果') {
-                   echo 'three'
-        }
     }
 }
