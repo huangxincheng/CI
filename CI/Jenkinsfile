@@ -1,10 +1,32 @@
 pipeline {
     agent any
 
+    environment {
+        // 部署人员名称
+        deployUserName = ''
+        // 部署项目名称
+        deployAppName = ''
+    }
+
     tools {
             //工具名称必须在Jenkins 管理Jenkins → 全局工具配置中预配置,配置构建工具,例如：maven,gradle
             maven 'maven'
             jdk 'jdk'
+    }
+
+    post {
+        // 部署失败
+        failure {
+            mail to: '249270087@qq.com',
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.BUILD_URL}"
+        }
+        // 部署成功
+        success {
+            mail to: '249270087@qq.com',
+                             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                             body: "Something is wrong with ${env.BUILD_URL}"
+        }
     }
 
     stages {
