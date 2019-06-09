@@ -3,14 +3,9 @@ package com.husen.ci.order.dao;
 import com.husen.ci.framework.utils.IpUtils;
 import com.husen.ci.framework.utils.SnowflakeIdWorker;
 import com.husen.ci.order.entity.OrderDTO;
-import com.husen.ci.order.pojo.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.net.InetAddress;
-import java.util.HashMap;
-import java.util.Map;
 
 /***
  @Author:MrHuang
