@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('打包') {
             steps {
+                sh 'mvn --version'
                 echo '打包..'
             }
         }
