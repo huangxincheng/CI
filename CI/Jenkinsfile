@@ -1,19 +1,26 @@
-node {
-   def mvnHome
-   stage('打包') { // for display purposes
-     echo 'one';
-     java -version;
-   }
-   stage('传输') {
-     echo 'two'
-   }
-   stage('部署') {
-     echo 'three'
-   }
-   stage('测试用例') {
-        echo 'three'
-   }
-   stage('最终结果') {
-           echo 'three'
-   }
+pipeline {
+    agent any
+    stages {
+        stage('打包') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('传输') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('部署') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+        stage('测试用例') {
+                echo 'three'
+        }
+        stage('最终结果') {
+                   echo 'three'
+        }
+    }
 }
