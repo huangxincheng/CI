@@ -1,7 +1,8 @@
 node {
    def mvnHome
    stage('打包') { // for display purposes
-     echo 'one'
+     echo 'one';
+     java -version;
    }
    stage('传输') {
      echo 'two'
