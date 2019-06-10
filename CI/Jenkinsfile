@@ -44,7 +44,10 @@ pipeline {
         }
         // 部署成功
         success {
-            mail to: '249270087@qq.com',
+            script {
+                echo 'deploy success'
+            }
+            mail to: 'limaila@163.com',
                              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                              body: "Something is wrong with ${env.BUILD_URL}"
         }
