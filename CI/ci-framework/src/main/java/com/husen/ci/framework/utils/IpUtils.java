@@ -12,12 +12,17 @@ public class IpUtils {
 
     private IpUtils(){}
 
+    private static final IpUtils INSTANCE = new IpUtils();
+
+    public static IpUtils getInstance() {
+        return INSTANCE;
+    }
+
     /**
-     *
      * 获取服务器IP
      * @return
      */
-    public static String getServerHost() {
+    public String getServerHost() {
         String hostAddress = "unkown";
         try {
             InetAddress localHost = InetAddress.getLocalHost();

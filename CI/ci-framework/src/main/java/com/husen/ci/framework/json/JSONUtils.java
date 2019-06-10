@@ -11,7 +11,7 @@ import java.util.TreeMap;
 /***
  @Author:MrHuang
  @Date: 2019/6/9 16:38
- @DESC: TODO
+ @DESC: TODO 基于Fastjson的Utils
  @VERSION: 1.0
  ***/
 public class JSONUtils {

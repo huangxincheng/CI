@@ -24,7 +24,7 @@ public class OrderDao {
             return false;
         }
         orderDTO.setOrderNo(new SnowflakeIdWorker().nextId());
-        orderDTO.setHost(IpUtils.getServerHost());
+        orderDTO.setHost(IpUtils.getInstance().getServerHost());
         OrderDTO insert = mongoTemplate.insert(orderDTO);
         return true;
     }

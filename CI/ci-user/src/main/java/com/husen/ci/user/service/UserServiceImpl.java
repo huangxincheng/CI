@@ -55,7 +55,7 @@ public class UserServiceImpl implements IUserService {
                 .setUserStatus(1)
                 .setUserActiveTime(LocalDateTime.now())
                 .setUserCreateTime(LocalDateTime.now())
-                .setHost(IpUtils.getServerHost())
+                .setHost(IpUtils.getInstance().getServerHost())
                 .setUserName(user.getUserName());
         userDao.add(dto);
         user = new User();
