@@ -31,7 +31,7 @@ spec:
               command:
               - ls /home
         volumeMounts:
-        - mountPath: ${user.home}/ci-order-web
+        - mountPath: /root/ci-order-web
           name: logs
       volumes:
       - name: logs
