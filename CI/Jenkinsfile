@@ -74,11 +74,18 @@ pipeline {
                 }
             }
         }
-        stage('编译代码生成镜像') {
+        stage('编译代码') {
             steps {
                 script {
                     // 远程 k8s-master进行打包
                     sh "ssh root@47.106.95.198 compile.sh"
+                }
+            }
+        }
+        stage('生成镜像') {
+            steps {
+                script {
+                    sh "ssh root@47.106.95.198 buildImage.sh ${deployAppName} ${deployAppVersion}"
                 }
             }
         }
