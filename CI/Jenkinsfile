@@ -18,9 +18,15 @@ pipeline {
         // 部署人员名称
         deployUserName = ''
         // Git克隆地址
-        cloneGitUrl  = 'https://github.com/huangxincheng/CI'
+        cloneGitUrl  = ''
         // 发布阿里云镜像库版本
-        dockerVersion = version()
+        dockerVersion = ''
+        // 部署工程名称
+        deployAppName = ''
+        // 部署工程版本
+        deployAppVersion = ''
+        // 部署所用分支
+        cloneGitBranch = ''
     }
 
     tools {
@@ -45,14 +51,22 @@ pipeline {
     }
 
     stages {
+        stage('初始化参数') {
+            steps {
+                script {
+                    deployUserName = 'huangxincheng'
+                    cloneGitUrl =  'https://github.com/huangxincheng/CI'
+                    cloneGitBranch = params.branch
+                    deployAppName = params.project
+                    deployAppVersion = "1.1"
+                    dockerVersion = version()
+                }
+            }
+        }
+
         stage('代码拉取') {
             steps {
                 script {
-                    deployAppName = params.project
-                    cloneGitBranch = params.branch
-                    echo "${deployAppName}"
-                    echo cloneGitBranch
-                    echo params.branch
                     sh "ssh root@47.106.95.198 clone.sh ${cloneGitBranch} ${cloneGitUrl}"
                 }
             }
@@ -68,19 +82,22 @@ pipeline {
         stage('上传本地镜像到阿里云仓库') {
             steps {
                 script {
-                    deployAppName = params.project
-                    deployAppVersion = 1.1
-                    deployDockerVersion = dockerVersion
-                    sh "ssh root@47.106.95.198 uploadLocalDockerImageToAliYun.sh ${deployAppName} ${deployAppVersion} ${deployDockerVersion}"
+                    sh "ssh root@47.106.95.198 uploadLocalDockerImageToAliYun.sh ${deployAppName} ${deployAppVersion} ${dockerVersion}"
                 }
             }
         }
         stage('K8S部署项目') {
             steps {
                 script {
-                    deployAppName = params.project
-                    deployAppVersion = 1.1
-                    sh "ssh root@47.106.95.198 deployAppByAliYunImage.sh ${deployAppName} ${deployDockerVersion}"
+                    sh "ssh root@47.106.95.198 deployAppByAliYunImage.sh ${deployAppName} ${dockerVersion}"
+                }
+            }
+        }
+        stage('检查项目是否正常') {
+            steps {
+                script {
+                    // 待补充
+                    echo "OK"
                 }
             }
         }
