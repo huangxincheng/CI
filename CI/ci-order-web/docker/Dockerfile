@@ -3,5 +3,6 @@ FROM fabric8/java-alpine-openjdk8-jdk
 #FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 EXPOSE 8082
-COPY ci-order-web.jar /home/
-ENTRYPOINT ["java","-jar","/home/ci-order-web.jar"]
+RUN mkdir -p /home/ci && chmod 755 /home/ci
+COPY ./target/ci-user-web.jar /home/ci
+ENTRYPOINT ["java","-jar","/home/ci/ci-order-web.jar"]
