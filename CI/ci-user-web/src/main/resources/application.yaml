@@ -23,6 +23,6 @@ server:
   port: 8081
 
 logging:
-  path: ${user.home}}/${spring.application.name}
+  path: ${user.home}/${spring.application.name}
   level:
     root: debug

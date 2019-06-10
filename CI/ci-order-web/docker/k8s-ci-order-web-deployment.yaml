@@ -23,13 +23,21 @@ spec:
         app: ci-order-web
     spec:
       containers:
-        - name: ci-order-web
-          image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/ci-order-web:1.1
-          lifecycle:
-            preStop:
-              exec:
-                command:
-                - ls /home
+      - name: ci-order-web
+        image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/ci-order-web:1.1
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - ls /home
+        volumeMounts:
+        - mountPath: ${user.home}/ci-order-web
+          name: logs
+      volumes:
+      - name: logs
+        hostPath:
+          path: /logs
+
 ---
 
 # 正常情况只有网关才需要暴露nodePort。
