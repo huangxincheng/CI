@@ -3,7 +3,7 @@ deployAppName=$1
 deployK8sVersion=$2
 old=`grep 'image' /root/k8s-$deployAppName-deployment.yaml`
 echo $old
-new="          image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/$deployAppName:$deployK8sVersion"
+new="        image: registry-vpc.cn-shenzhen.aliyuncs.com/huangxincheng/$deployAppName:$deployK8sVersion"
 echo $new
 # 替换文件里面镜像
 sed -i "s!$old!$new!" /root/k8s-$deployAppName-deployment.yaml
