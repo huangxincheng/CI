@@ -8,7 +8,5 @@ VOLUME /tmp
 EXPOSE 8081
 RUN mkdir -p /home/ci && chmod 755 /home/ci
 COPY ./ci-user-web.jar /home/ci
-RUN apk add --no-cache tini
-ENTRYPOINT ["/sbin/tini", "--"]
 COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
 ENTRYPOINT ["java","-jar","/home/ci/ci-user-web.jar"]
