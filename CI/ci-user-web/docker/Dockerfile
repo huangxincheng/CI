@@ -12,6 +12,6 @@ COPY ./ci-user-web.jar /home/ci
 # 拷贝远程镜像的arthas的/opt/arthas到镜像内部的/opt/arthas种
 COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
 RUN apk add --no-cache tini
-ENTRYPOINT ["/tini", "--"]
+ENTRYPOINT ["/sbin/tini", "--"]
 #CMD ["/your/program", "-and", "-its", "arguments"]
 CMD ["java","-jar","/home/ci/ci-user-web.jar"]
