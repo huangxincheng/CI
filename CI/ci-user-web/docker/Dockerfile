@@ -9,4 +9,4 @@ EXPOSE 8081
 RUN mkdir -p /home/ci && chmod 755 /home/ci
 COPY ./ci-user-web.jar /home/ci
 COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
-ENTRYPOINT ["/bin/bash", "-c","set -e && ","java","-jar","/home/ci/ci-user-web.jar"]
+ENTRYPOINT ["/bin/sh", "-c","set -e && ","java","-jar","/home/ci/ci-user-web.jar"]
