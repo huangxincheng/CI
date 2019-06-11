@@ -4,8 +4,6 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.husen.ci.framework.net.bean.HttpResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -65,17 +63,13 @@ public class GuavaCache<K,V> {
         return new GuavaCache<>(seconds, maxSize);
     }
 
-    private Cache<K, Optional<V>> getCache() {
-        return this.cache;
-    }
-
     /**
      * 如果有值返回值，如果没有值返回空
      * @param key
      * @return
      */
     private Optional<V> getLocal(K key) {
-        return getCache().getIfPresent(key);
+        return cache.getIfPresent(key);
     }
 
     /**
@@ -86,13 +80,18 @@ public class GuavaCache<K,V> {
     public V get(K key, Supplier<V> call) {
         Optional<V> local = getLocal(key);
         if (local == null) {
-            log.info("GuavaCache Get For Supplier key = {}", key);
             V v = call.get();
-            getCache().put(key, Optional.ofNullable(v));
+            log.info("GuavaCache Get For Supplier key = {} val = {}", key, v);
+            this.reload(key, v);
             return v;
         }
-        log.info("GuavaCache Get For LocalCache key = {}", key);
-        return local.orElse(null);
+        V v = local.orElse(null);
+        log.info("GuavaCache Get For LocalCache key = {} val = {}", key, v);
+        return v;
+    }
+
+    public void reload(K key, V v) {
+       cache.put(key, Optional.ofNullable(v));
     }
 
     public static void main(String[] args) throws InterruptedException {

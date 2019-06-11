@@ -1,5 +1,6 @@
 package com.husen.ci.user.dao;
 
+import com.husen.ci.framework.cache.GuavaCache;
 import com.husen.ci.user.entity.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -24,9 +25,10 @@ public class UserDao {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    private GuavaCache<String, UserDTO> guavaCache = GuavaCache.getInstace();
+
     public UserDTO findById(String userId) {
-        UserDTO dto = mongoTemplate.findById(userId, UserDTO.class);
-        return dto;
+        return guavaCache.get(userId, () -> mongoTemplate.findById(userId, UserDTO.class));
     }
 
     public List<UserDTO> getAll() {
