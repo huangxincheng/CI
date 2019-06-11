@@ -3,6 +3,9 @@ package com.husen.ci.framework.cache;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.husen.ci.framework.net.bean.HttpResult;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -11,9 +14,10 @@ import java.util.function.Supplier;
 /***
  @Author:MrHuang
  @Date: 2019/6/11 12:32
- @DESC: TODO
+ @DESC: TODO 多例的GuavaCache
  @VERSION: 1.0
  ***/
+@Slf4j
 public class GuavaCache<K,V> {
 
     /**
@@ -82,15 +86,20 @@ public class GuavaCache<K,V> {
     public V get(K key, Supplier<V> call) {
         Optional<V> local = getLocal(key);
         if (local == null) {
+            log.info("GuavaCache Get For Supplier key = {}", key);
             V v = call.get();
             getCache().put(key, Optional.ofNullable(v));
             return v;
         }
+        log.info("GuavaCache Get For LocalCache key = {}", key);
         return local.orElse(null);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         GuavaCache<String,HttpResult> cache = GuavaCache.getInstace();
         HttpResult result = cache.get("123", () -> new HttpResult().setContent("213"));
+        result = cache.get("123", () -> new HttpResult().setContent("213"));
+        result = cache.get("123", () -> new HttpResult().setContent("213"));
+        result = cache.get("123", () -> new HttpResult().setContent("213"));
     }
 }

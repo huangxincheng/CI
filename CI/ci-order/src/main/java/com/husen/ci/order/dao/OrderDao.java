@@ -1,5 +1,6 @@
 package com.husen.ci.order.dao;
 
+import com.husen.ci.framework.cache.GuavaCache;
 import com.husen.ci.framework.utils.IpUtils;
 import com.husen.ci.framework.utils.SnowflakeIdWorker;
 import com.husen.ci.order.entity.OrderDTO;
@@ -19,6 +20,8 @@ public class OrderDao {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    private GuavaCache<Long,OrderDTO> guavaCache = GuavaCache.getInstace();
+
     public boolean saveOrder(OrderDTO orderDTO) {
         if (orderDTO == null) {
             return false;
@@ -30,6 +33,6 @@ public class OrderDao {
     }
 
     public OrderDTO queryOrder(Long orderNo) {
-       return  mongoTemplate.findById(orderNo, OrderDTO.class);
+        return guavaCache.get(orderNo,() -> mongoTemplate.findById(orderNo, OrderDTO.class));
     }
 }
