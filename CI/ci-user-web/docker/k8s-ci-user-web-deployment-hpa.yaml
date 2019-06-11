@@ -5,7 +5,7 @@ metadata:
   namespace: ci
 spec:
   scaleTargetRef:
-    apiVersion: v1
+    apiVersion: extensions/v1beta1
     kind: Deployment
     name: ci-user-web
   minReplicas: 1
