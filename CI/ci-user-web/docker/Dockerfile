@@ -2,7 +2,7 @@
 #FROM fabric8/java-alpine-openjdk8-jdk
 #FROM fabric8/java-jboss-openjdk8-jdk
 #FROM openjdk:8-jdk-alpine
-FROM openjdk:8-jdk-alpine
+FROM fabric8/java-alpine-openjdk8-jdk
 MAINTAINER huangxincheng 249270087@qq.com
 VOLUME /tmp
 EXPOSE 8081
