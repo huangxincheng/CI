@@ -1,6 +1,5 @@
 package com.husen.ci.user.web;
 
-import com.husen.ci.framework.utils.SnowflakeIdWorker;
 import com.husen.ci.order.pojo.Order;
 import com.husen.ci.order.service.IOrderSevrice;
 import com.husen.ci.user.pojo.User;
