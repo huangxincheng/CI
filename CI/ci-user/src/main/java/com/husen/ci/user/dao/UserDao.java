@@ -28,6 +28,9 @@ public class UserDao {
     private GuavaCache<String, UserDTO> guavaCache = GuavaCache.getInstace();
 
     public UserDTO findById(String userId) {
+        if ("5cf7d93859c61d51708da706".equals(userId)) {
+            throw new RuntimeException("TEST EXCEPTION");
+        }
         return guavaCache.get(userId, () -> mongoTemplate.findById(userId, UserDTO.class));
     }
 
