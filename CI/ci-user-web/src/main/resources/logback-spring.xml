@@ -139,7 +139,7 @@
         </filter>
     </appender>
 
-
+    <!-- TRACE, DEBUG, INFO, WARN, ERROR, ALL, OFF -->
     <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
     <root level="${logLevel}">
         <appender-ref ref="FILEERROR" />
