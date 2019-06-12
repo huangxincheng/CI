@@ -4,6 +4,7 @@ import com.husen.ci.order.pojo.Order;
 import com.husen.ci.order.service.IOrderSevrice;
 import com.husen.ci.user.pojo.User;
 import com.husen.ci.user.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import java.util.Collection;
  ***/
 @RestController
 @RequestMapping("/api/v1/user")
+@Slf4j
 public class UserApi {
 
     @Autowired
@@ -30,11 +32,13 @@ public class UserApi {
 
     @RequestMapping("/get/{userId}")
     public User get(@PathVariable String userId) {
+        log.info("UserApi get userId = " + userId);
        return  userService.getOneById(userId);
     }
 
     @RequestMapping("/getAll")
     public Collection<User> getAll() {
+        log.info("UserApi getAll");
         return userService.getAll();
     }
 
