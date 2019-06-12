@@ -10,13 +10,13 @@ RUN mkdir -p /home/ci && chmod 755 /home/ci
 # 拷贝本地的ci-web.jar到镜像内部的/home/ci目录下
 COPY ./ci-user-web.jar /home/ci
 # 无arthas版
-#ENTRYPOINT ["java","-jar","/home/ci/ci-user-web.jar"]
+ENTRYPOINT ["java","-jar","/home/ci/ci-user-web.jar"]
 
 
 # 有arthas版本
 # 拷贝远程镜像的arthas的/opt/arthas到镜像内部的/opt/arthas种
-COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
-RUN apk add --no-cache tini
-ENTRYPOINT ["/sbin/tini", "--"]
-#CMD ["/your/program", "-and", "-its", "arguments"]
-CMD ["java","-jar","/home/ci/ci-user-web.jar"]
+#COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
+#RUN apk add --no-cache tini
+#ENTRYPOINT ["/sbin/tini", "--"]
+##CMD ["/your/program", "-and", "-its", "arguments"]
+#CMD ["java","-jar","/home/ci/ci-user-web.jar"]
