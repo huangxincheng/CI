@@ -25,4 +25,4 @@ server:
 logging:
   path: ${user.home}/${spring.application.name}
   level:
-    root: info
+    root: debug
