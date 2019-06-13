@@ -9,6 +9,8 @@ EXPOSE 8081
 RUN mkdir -p /home/ci && chmod 755 /home/ci
 # 拷贝本地的ci-web.jar到镜像内部的/home/ci目录下
 COPY ./ci-user-web.jar /home/ci
+
+RUN echo "Asia/Shanghai" > /etc/timezone
 # 无arthas版
 ENTRYPOINT ["java","-jar","/home/ci/ci-user-web.jar"]
 
