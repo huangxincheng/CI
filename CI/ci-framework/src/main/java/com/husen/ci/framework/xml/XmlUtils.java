@@ -1,5 +1,6 @@
 package com.husen.ci.framework.xml;
 
+import com.husen.ci.framework.net.bean.HttpResult;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
@@ -183,10 +184,10 @@ public class XmlUtils {
      */
     public static Map<String, String> xmlToMap(String strXML) throws Exception {
         try {
-            Map<String, String> data = new HashMap<String, String>();
+            Map<String, String> data = new HashMap<>(16);
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            InputStream stream = new ByteArrayInputStream(strXML.getBytes("UTF-8"));
+            InputStream stream = new ByteArrayInputStream(strXML.getBytes(StandardCharsets.UTF_8.name()));
             org.w3c.dom.Document doc = documentBuilder.parse(stream);
             doc.getDocumentElement().normalize();
             NodeList nodeList = doc.getDocumentElement().getChildNodes();
@@ -240,7 +241,7 @@ public class XmlUtils {
         StringWriter writer = new StringWriter();
         StreamResult result = new StreamResult(writer);
         transformer.transform(source, result);
-        String output = writer.getBuffer().toString(); //.replaceAll("\n|\r", "");
+        String output = writer.getBuffer().toString();
         try {
             writer.close();
         } catch (Exception ex) {
@@ -249,4 +250,10 @@ public class XmlUtils {
         return output;
     }
 
+
+    public static void main(String[] args) {
+        HttpResult result = new HttpResult().setCode(200).setContent("OK");
+        System.out.println(XmlUtils.toXml(result));
+        System.out.println(XmlUtils.toXmlWithCData(result));
+    }
 }
