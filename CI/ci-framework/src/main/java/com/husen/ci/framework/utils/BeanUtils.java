@@ -1,6 +1,11 @@
 package com.husen.ci.framework.utils;
 
-import java.util.Optional;
+import com.husen.ci.framework.json.JSONUtils;
+import com.husen.ci.framework.net.bean.HttpResult;
+import org.springframework.cglib.beans.BeanMap;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  @Author:MrHuang
@@ -14,7 +19,26 @@ public class BeanUtils {
         if (t == null) {
             return null;
         }
-        BeanUtils.copyProperties(t, f);
+        org.springframework.beans.BeanUtils.copyProperties(t, f);
         return f;
     }
+
+    public static Map<String, Object> bean2Map(Object bean) {
+        return BeanMap.create(bean);
+    }
+
+
+    public static <T> T map2Bean(Map<String, Object> map, Class<T> clazz) {
+        return JSONUtils.json2Bean(JSONUtils.object2Json(map), clazz);
+    }
+
+    public static void main(String[] args) {
+        Map<String, Object> a = new HashMap<>();
+        a.put("code", 2000);
+        HttpResult result = map2Bean(a, HttpResult.class);
+        System.out.println(result);
+        Map map = bean2Map(result);
+        System.out.println(map);
+    }
 }
+

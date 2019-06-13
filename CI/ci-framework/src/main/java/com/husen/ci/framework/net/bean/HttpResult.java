@@ -35,7 +35,7 @@ public class HttpResult implements Serializable {
     private Map<String, List<String>> headers;
 
 
-    public boolean isOk() {
+    public boolean ok() {
         return SUCCESS_CODE == this.code;
     }
 

@@ -36,7 +36,7 @@ public class JSONUtils {
         return JSON.parseArray(jsondata);
     }
 
-    public String object2Json(Object object) {
+    public static String object2Json(Object object) {
         return JSON.toJSONString(object);
     }
 }
