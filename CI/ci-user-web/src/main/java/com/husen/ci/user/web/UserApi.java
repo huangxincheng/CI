@@ -1,5 +1,6 @@
 package com.husen.ci.user.web;
 
+import com.husen.ci.framework.api.GlobalApiResponse;
 import com.husen.ci.order.pojo.Order;
 import com.husen.ci.order.service.IOrderSevrice;
 import com.husen.ci.user.pojo.User;
@@ -31,15 +32,15 @@ public class UserApi {
     private IOrderSevrice orderSevrice;
 
     @RequestMapping("/get/{userId}")
-    public User get(@PathVariable String userId) {
+    public GlobalApiResponse<User> get(@PathVariable String userId) {
         log.info("UserApi get userId = " + userId);
-       return  userService.getOneById(userId);
+        return GlobalApiResponse.toSuccess(userService.getOneById(userId));
     }
 
     @RequestMapping("/getAll")
-    public Collection<User> getAll() {
+    public GlobalApiResponse<Collection<User>> getAll() {
         log.info("UserApi getAll");
-        return userService.getAll();
+        return GlobalApiResponse.toSuccess(userService.getAll());
     }
 
     @RequestMapping("/saveUser/{userName}")
