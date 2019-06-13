@@ -15,7 +15,7 @@ import java.util.Map;
  ***/
 public class BeanUtils {
 
-    public static <T,F> F copyProperties(T t, F f) {
+    public static <T, F> F copy(T t, F f) {
         if (t == null) {
             return null;
         }
