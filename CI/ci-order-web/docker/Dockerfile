@@ -6,6 +6,8 @@ VOLUME /tmp
 EXPOSE 8082
 RUN mkdir -p /home/ci && chmod 755 /home/ci
 COPY ./ci-order-web.jar /home/ci
+# 解决时区问题东八区
+RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
 # 无arthas版
 #ENTRYPOINT ["java","-jar","/home/ci/ci-order-web.jar"]
 
