@@ -36,7 +36,7 @@ spec:
           preStop:
             exec:
               command:
-              - ls /home
+                - ls /root
         env:
           - name: JAVA_OPTS
             value: "-server -Xmx512m -Xms512m"
