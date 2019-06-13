@@ -31,6 +31,14 @@
             <version>1.2.58</version>
         </dependency>
 
+        <!-- xstream-->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.11.1</version>
+        </dependency>
+
+
         <!-- guava-->
         <dependency>
             <groupId>com.google.guava</groupId>
