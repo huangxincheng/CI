@@ -9,9 +9,5 @@ EXPOSE 8081
 RUN mkdir -p /home/ci && chmod 755 /home/ci
 COPY ./ci-user-web.jar /home/ci
 ENTRYPOINT ["/sbin/tini", "--"]
-ENV JAVA_OPTS="\
--server \
--Xmx512m \
--Xms512m"
 #CMD ["java","-Xmx512m -Xms512m","-jar","/home/ci/ci-user-web.jar"]
 CMD java ${JAVA_OPTS} -jar home/ci/ci-user-web.jar
