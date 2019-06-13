@@ -16,6 +16,7 @@ import java.util.TreeMap;
  ***/
 public class JSONUtils {
 
+
     public static <T> T json2Bean(String jsonData, Class<T> clazz) {
         return JSON.parseObject(jsonData, clazz);
     }
@@ -32,11 +33,23 @@ public class JSONUtils {
         return JSON.parseObject(jsonData);
     }
 
-    public static JSONArray json2JSONArray(String jsondata) {
-        return JSON.parseArray(jsondata);
+    public static JSONArray json2JSONArray(String jsonData) {
+        return JSON.parseArray(jsonData);
     }
 
     public static String object2Json(Object object) {
         return JSON.toJSONString(object);
+    }
+
+    public static boolean valid(String jsonData) {
+        return JSON.isValid(jsonData);
+    }
+
+    public static boolean vaildArray(String jsonData) {
+        return JSON.isValidArray(jsonData);
+    }
+
+    public static boolean vailObject(String jsonData) {
+        return JSON.isValidObject(jsonData);
     }
 }
