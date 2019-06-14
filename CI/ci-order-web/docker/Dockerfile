@@ -9,4 +9,4 @@ EXPOSE 8081
 RUN mkdir -p /home/ci && chmod 755 /home/ci
 COPY ./ci-order-web.jar /home/ci
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["java","-jar","/home/ci/ci-order-web.jar"]
+CMD java ${JAVA_OPTS} -jar home/ci/ci-order-web.jar

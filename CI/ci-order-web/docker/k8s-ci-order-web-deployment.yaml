@@ -37,6 +37,9 @@ spec:
             exec:
               command:
               - ls /home
+        env:
+          - name: JAVA_OPTS
+            value: "-server -Xmx512m -Xms512m"
         volumeMounts:
         - mountPath: /root/ci-order-web
           name: logs
