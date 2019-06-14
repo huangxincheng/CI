@@ -1,4 +1,4 @@
-package com.husen.ci.framework.webframework.api;
+package com.husen.ci.framework.api;
 
 import com.husen.ci.framework.api.GlobalApiCode;
 import com.husen.ci.framework.api.GlobalApiException;
