@@ -38,8 +38,8 @@ spec:
               command:
                 - ls /root
         env:
-          - name: JAVA_OPTS
-            value: "-server -Xmx512m -Xms512m"
+        - name: JAVA_OPTS
+          value: "-server -Xmx512m -Xms512m"
         volumeMounts:
         - mountPath: /root/ci-user-web
           name: logs
