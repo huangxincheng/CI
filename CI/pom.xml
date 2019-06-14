@@ -15,6 +15,7 @@
         <module>ci-order-web</module>
         <module>ci-order</module>
         <module>ci-framework</module>
+        <module>ci-web-framework</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -16,4 +16,9 @@ public interface GlobalApiCode {
      * 未知错误响应码
      */
     int UNKNOW_CODE = -10001;
+
+    /**
+     * 业务错误响应码
+     */
+    int BUSIN_ERROR_CODE = 10000;
 }
