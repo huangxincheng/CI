@@ -33,32 +33,30 @@ public class UserApi {
 
     @RequestMapping("/get/{userId}")
     public GlobalApiResponse<User> get(@PathVariable String userId) {
-        log.info("UserApi get userId = " + userId);
         return GlobalApiResponse.toSuccess(userService.getOneById(userId));
     }
 
     @RequestMapping("/getAll")
     public GlobalApiResponse<Collection<User>> getAll() {
-        log.info("UserApi getAll");
         return GlobalApiResponse.toSuccess(userService.getAll());
     }
 
     @RequestMapping("/saveUser/{userName}")
-    public User saveUser(@PathVariable String userName) {
+    public GlobalApiResponse<User> saveUser(@PathVariable String userName) {
         User user = new User().setUserName(userName);
-        return userService.createUser(user);
+        return GlobalApiResponse.toSuccess(userService.createUser(user));
     }
 
     @RequestMapping("/saveOrder")
-    public boolean saveOrder(@RequestBody Order order) {
+    public GlobalApiResponse<Boolean> saveOrder(@RequestBody Order order) {
         boolean flag = orderSevrice.saveOrder(order);
-        return flag;
+        return GlobalApiResponse.toSuccess(flag);
     }
 
     @RequestMapping("/queryOrder/{orderNo}")
-    public Order queryOrder(@PathVariable Long orderNo) {
+    public GlobalApiResponse<Order> queryOrder(@PathVariable Long orderNo) {
         Order order = orderSevrice.queryOrder(orderNo);
-        return order;
+        return GlobalApiResponse.toSuccess(order);
     }
 
 

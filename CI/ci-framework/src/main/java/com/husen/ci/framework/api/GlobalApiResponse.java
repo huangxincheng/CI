@@ -19,10 +19,19 @@ import static com.husen.ci.framework.api.GlobalApiCode.*;
 @Slf4j
 public class GlobalApiResponse<T> implements Serializable {
 
+    /**
+     * 业务响应Code
+     */
     private int code;
 
+    /**
+     * 业务响应Msg与Code对应
+     */
     private String msg;
 
+    /**
+     * 业务响应体payLoad
+     */
     private T payLoad;
 
     /**
