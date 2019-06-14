@@ -2,8 +2,11 @@ package com.husen.ci.framework.api;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
+
+import static com.husen.ci.framework.api.GlobalApiCode.*;
 
 /***
  @Author:MrHuang
@@ -13,6 +16,7 @@ import java.io.Serializable;
  ***/
 @Data
 @Accessors(chain = true)
+@Slf4j
 public class GlobalApiResponse<T> implements Serializable {
 
     private int code;
@@ -20,10 +24,6 @@ public class GlobalApiResponse<T> implements Serializable {
     private String msg;
 
     private T payLoad;
-
-    public static final int SUCCESS_CODE = 200;
-
-    public static final int FAIL_CODE = 500;
 
     /**
      * 成功时候返回
@@ -33,16 +33,28 @@ public class GlobalApiResponse<T> implements Serializable {
      * @return
      */
     public static <T> GlobalApiResponse<T> toSuccess(T payLoad) {
+        log.info("The GlobalApiResponse toSuccess payLoad = {}", payLoad);
         return new GlobalApiResponse<T>().setCode(SUCCESS_CODE).setMsg("SUCCESS").setPayLoad(payLoad);
     }
 
     /**
      * 失败时候返回
-     *
-     * @param msg
      * @return
      */
-    public static GlobalApiResponse toFail(String msg) {
-        return new GlobalApiResponse().setCode(FAIL_CODE).setMsg(msg);
+    public static GlobalApiResponse toFail(Exception e) {
+        log.error("The GlobalApiResponse toFail", e);
+        return new GlobalApiResponse().setCode(UNKNOW_CODE).setMsg("UNKONW");
+    }
+
+    /**
+     * 失败时返回
+     *
+     * @param code
+     * @param errorMsg
+     * @return
+     */
+    public static GlobalApiResponse toFail(int code, String errorMsg) {
+        log.info("The GlobalApiResponse toFail code = {} errorMsg = {}", code, errorMsg);
+        return new GlobalApiResponse().setCode(code).setMsg(errorMsg);
     }
 }
