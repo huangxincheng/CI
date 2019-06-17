@@ -101,8 +101,7 @@
                 <pattern>
                     <pattern>
                         {"HOSTNAME":"${HOSTNAME}","IP":"%IP","APPNAME":"${applicationName}","X-B3-TraceId":"[%X{X-B3-TraceId:-}]","X-B3-SpanId":"[%X{X-B3-SpanId:-}]",
-                        "ctime":"%d{yyyy-MM-dd
-                        HH:mm:ss.SSS}","thread":"[%thread]","level":"%-5level","logger":"%logger","msg":"%msg"}%n
+                        "ctime":"%d{yyyy-MM-dd HH:mm:ss.SSS}","thread":"[%thread]","level":"%-5level","logger":"%logger","msg":"%msg"}%n
                     </pattern>
                 </pattern>
                 <stackTrace>
