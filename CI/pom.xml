@@ -21,17 +21,28 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+        <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <dubbo.version>2.7.1</dubbo.version>
         <ci.version>1.1</ci.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- 整合SpringBoot-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 整合springCloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -86,7 +97,7 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
@@ -94,7 +105,7 @@
                         <delimit>$</delimit>
                     </delimiters>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

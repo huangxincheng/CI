@@ -38,6 +38,7 @@ public class UserApi {
 
     @RequestMapping("/getAll")
     public GlobalApiResponse<Collection<User>> getAll() {
+        log.info("GETALL");
         return GlobalApiResponse.toSuccess(userService.getAll());
     }
 
