@@ -1,5 +1,6 @@
 package com.husen.ci.framework.api;
 
+import com.husen.ci.framework.json.JSONUtils;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +43,7 @@ public class GlobalApiResponse<T> implements Serializable {
      * @return
      */
     public static <T> GlobalApiResponse<T> toSuccess(T payLoad) {
-        log.info("The GlobalApiResponse toSuccess payLoad = {}", payLoad);
+        log.info("The GlobalApiResponse toSuccess payLoad = {}", JSONUtils.object2Json(payLoad));
         return new GlobalApiResponse<T>().setCode(SUCCESS_CODE).setMsg("SUCCESS").setPayLoad(payLoad);
     }
 
