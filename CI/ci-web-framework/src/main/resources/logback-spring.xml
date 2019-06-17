@@ -54,9 +54,8 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!--encoder 默认配置为PatternLayoutEncoder-->
         <encoder>
-            <pattern>{"IP":"%IP", "X-B3-TraceId":"[%X{X-B3-TraceId:-}]", "X-B3-SpanId":"[%X{X-B3-SpanId:-}]",
-                "ctime":"%d{yyyy-MM-dd HH:mm:ss.SSS}", "thread":"[%thread]", "level":"%-5level", "logger":"%logger",
-                "line":"%-3L", "msg":"%msg" }%n
+            <pattern>
+                {"IP":"%IP", "X-B3-TraceId":"[%X{X-B3-TraceId:-}]", "X-B3-SpanId":"[%X{X-B3-SpanId:-}]", "ctime":"%d{yyyy-MM-dd HH:mm:ss.SSS}", "thread":"[%thread]", "level":"%-5level", "logger":"%logger", "line":"%-3L", "msg":"%msg" }%n
             </pattern>
             <charset>utf-8</charset>
         </encoder>
