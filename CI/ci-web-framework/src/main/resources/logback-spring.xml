@@ -80,7 +80,7 @@
         <topic>ci-log-kafka-topic</topic>
         <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy"/>
         <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy"/>
-        <producerConfig>bootstrap.servers=sizne.net:9092</producerConfig>
+        <producerConfig>bootstrap.servers=single.kafka.sizne.net:9092</producerConfig>
         <producerConfig>acks=0</producerConfig>
         <producerConfig>linger.ms=1000</producerConfig>
         <producerConfig>max.block.ms=0</producerConfig>
