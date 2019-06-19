@@ -22,7 +22,7 @@ public final class IpUtils {
      * 获取服务器IP
      * @return
      */
-    public String getServerHost() {
+    public String getServerIP() {
         String hostAddress = "unkown";
         try {
             InetAddress localHost = InetAddress.getLocalHost();

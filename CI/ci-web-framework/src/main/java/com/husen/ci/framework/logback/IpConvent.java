@@ -25,6 +25,6 @@ public class IpConvent extends ClassicConverter {
      */
     @Override
     public String convert(ILoggingEvent event) {
-        return IpUtils.getInstance().getServerHost();
+        return IpUtils.getInstance().getServerIP();
     }
 }

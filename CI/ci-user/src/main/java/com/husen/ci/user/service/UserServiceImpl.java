@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,7 +54,7 @@ public class UserServiceImpl implements IUserService {
                 .setUserStatus(1)
                 .setUserActiveTime(LocalDateTime.now())
                 .setUserCreateTime(LocalDateTime.now())
-                .setHost(IpUtils.getInstance().getServerHost())
+                .setHost(IpUtils.getInstance().getServerIP())
                 .setUserName(user.getUserName());
         userDao.add(dto);
         user = new User();
