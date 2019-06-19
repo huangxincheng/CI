@@ -8,7 +8,7 @@ import java.net.InetAddress;
  @DESC: TODO
  @VERSION: 1.0
  ***/
-public class IpUtils {
+public final class IpUtils {
 
     private IpUtils(){}
 
