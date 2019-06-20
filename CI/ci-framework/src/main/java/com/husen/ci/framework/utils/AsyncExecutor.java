@@ -24,7 +24,7 @@ import java.util.concurrent.*;
  注意点：
     Callable接口支持返回执行结果，此时需要调用FutureTask.get()方法实现，此方法会阻塞主线程直到获取‘将来’结果；当不调用此方法时，主线程不会阻塞！
  ***/
-public class AsyncExecutor {
+public final class AsyncExecutor {
 
     /**
      * 核心线程数
@@ -56,7 +56,7 @@ public class AsyncExecutor {
      * Runnable不能出现异常 必须try catch
      * @param runnable
      */
-    public void execute(Runnable runnable) {
+    public static void execute(Runnable runnable) {
         EXECUTOR_SERVICE.execute(runnable);
     }
 
@@ -66,8 +66,16 @@ public class AsyncExecutor {
      * @param <T>
      * @return
      */
-    public <T> Future<T> submit(Callable<T> callable) {
+    public static <T> Future<T> submit(Callable<T> callable) {
        return EXECUTOR_SERVICE.submit(callable);
     }
 
+    public static void main(String[] args) {
+        for( int i = 0 ; i < 10; i++) {
+            final int it = i;
+            AsyncExecutor.execute(() -> {
+                System.out.println(Thread.currentThread().getName() + it);
+            });
+        }
+    }
 }
