@@ -359,29 +359,33 @@ public class HttpUtils {
     }
 
     public static void main(String[] args) {
-        HttpResult result = HttpUtils.getInstance().doGet("http://www.baidu.com");
-        System.out.println(result);
-        String body = "{\n" +
-                "\t\"userId\": 10001,\n" +
-                "\t\"orderTitle\": \"order title\",\n" +
-                "\t\"orderRemake\": \"order remake\",\n" +
-                "\t\"orderAmount\": 1000\n" +
-                "}";
-        HttpResult result1 = HttpUtils.getInstance().doPostBody("http://www.limaila.com:30081/api/v1/user/saveOrder", body, null);
-        System.out.println(result);
+//        HttpResult result = HttpUtils.getInstance().doGet("http://www.baidu.com");
+//        System.out.println(result);
+//        String body = "{\n" +
+//                "\t\"userId\": 10001,\n" +
+//                "\t\"orderTitle\": \"order title\",\n" +
+//                "\t\"orderRemake\": \"order remake\",\n" +
+//                "\t\"orderAmount\": 1000\n" +
+//                "}";
+//        HttpResult result1 = HttpUtils.getInstance().doPostBody("http://www.limaila.com:30081/api/v1/user/saveOrder", body, null);
+//        System.out.println(result);
+//
+//        HttpUtils.getInstance()
+//                .doPostBodyWithAsync("http://www.limaila.com:30081/api/v1/user/saveOrder", body, null, new Callback() {
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        System.out.println("onFailure call = " + call.toString() + "e =" + e);
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        System.out.println("onResponse call = " + call.toString() + "response =" + response);
+//                    }
+//                });
 
-        HttpUtils.getInstance()
-                .doPostBodyWithAsync("http://www.limaila.com:30081/api/v1/user/saveOrder", body, null, new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        System.out.println("onFailure call = " + call.toString() + "e =" + e);
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        System.out.println("onResponse call = " + call.toString() + "response =" + response);
-                    }
-                });
+        String esUrl = "http://node1.es.sizne.net:9200/";
+        HttpResult result = HttpUtils.getInstance().doGet(esUrl);
+        System.out.println(result);
 
     }
 }
