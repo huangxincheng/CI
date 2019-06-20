@@ -24,20 +24,32 @@ import java.util.concurrent.*;
  注意点：
     Callable接口支持返回执行结果，此时需要调用FutureTask.get()方法实现，此方法会阻塞主线程直到获取‘将来’结果；当不调用此方法时，主线程不会阻塞！
  ***/
-public class AsyncExcecutor {
+public class AsyncExecutor {
 
+    /**
+     * 核心线程数
+     */
     private static final int CORE_SIZE = 30;
 
+    /**
+     * 最大线程数
+     */
     private static final int MAX_SIZE = 200;
 
+    /**
+     * 空闲时间释放值
+     */
     private static final int KEEP_SECONDS = 30;
 
+    /**
+     * 队列大小
+     */
     private static final int QUEUE_SIZE = 5000;
 
     private static final ExecutorService EXECUTOR_SERVICE =
             new ThreadPoolExecutor(CORE_SIZE, MAX_SIZE, KEEP_SECONDS, TimeUnit.SECONDS,
                     new LinkedBlockingQueue<>(QUEUE_SIZE),
-                    new ThreadFactoryBuilder().setNameFormat("AsyncExcecutor-%s").build());
+                    new ThreadFactoryBuilder().setNameFormat("AsyncExecutor-%s").build());
 
 
     /**
